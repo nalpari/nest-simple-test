@@ -37,7 +37,7 @@ export class AppController {
 
   @Get('/api/test/:id')
   getTestById(@Param('id') id: number): { id: number; message: string } {
-    const data = testData.find((data) => data.id === id);
+    const data = testData.find((data) => data.id === Number(id));
     if (!data) {
       throw new NotFoundException('Data not found');
     }
@@ -65,7 +65,7 @@ export class AppController {
     id: number;
     message: string;
   } {
-    const data = testData.find((data) => data.id === id);
+    const data = testData.find((data) => data.id === Number(id));
     if (!data) {
       throw new NotFoundException('Data not found');
     }
@@ -75,7 +75,7 @@ export class AppController {
 
   @Delete('/api/test/:id')
   deleteTest(@Param('id') id: number): void {
-    const index = testData.findIndex((data) => data.id === id);
+    const index = testData.findIndex((data) => data.id === Number(id));
     if (index === -1) {
       throw new NotFoundException('Data not found');
     }
